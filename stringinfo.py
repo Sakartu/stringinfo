@@ -2,13 +2,17 @@
 # -*- coding: utf8 -*-
 """
 Usage:
-stringinfo [--list] [--all] [--] [STRING...]
-
+stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--unicode] [--verbose] [--] [STRING...]
 
 Options:
 STRING          One or more strings for which you want information
 --all           Run all plugins, even the ones that aren't default
 --list          List all plugins, with their descriptions and whether they're default or not
+--basic         Run only the basic info plugin
+--hash          Run only the hash plugin
+--xor           Run only the XOR plugin
+--unicode       Run only the unicode plugin
+--verbose       Print debugging messages
 """
 import colorama
 
@@ -24,7 +28,7 @@ def main():
     args = docopt(__doc__)
 
     # Find plugins
-    ps = plugins.get_plugins()
+    ps = plugins.get_plugins(args)
 
     if args['--list']:
         table = VeryPrettyTable()
@@ -42,9 +46,12 @@ def main():
     # For each plugin, check if it's applicable and if so, run it
     for p in ps:
         plugin = p(args)
-        if (args['--all'] or plugin.default) and plugin.sentinel():
+        if plugin.sentinel():
             print(plugin.short_description)
             print(plugin.handle())
+        else:
+            if args['--verbose']:
+                print('Sentinel failed for {0}'.format(p.__name__))
 
 
 if __name__ == '__main__':

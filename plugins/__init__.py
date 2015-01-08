@@ -1,10 +1,11 @@
+from collections import OrderedDict
 import os
 
 __author__ = 'peter'
 
 
-def get_plugins():
-    result = []
+def get_plugins(args):
+    result = OrderedDict()
     for name in os.listdir(os.path.dirname(__file__)):
         if not name.endswith('_plugin.py'):
             continue
@@ -12,8 +13,25 @@ def get_plugins():
         i = __import__(name, fromlist=[''])
         for c in dir(i):
             if c.endswith('Plugin') and c != 'BasePlugin':
-                result.append(getattr(i, c))
-    return result
+                p = getattr(i, c)
+                result[p.__name__] = p
+
+    to_run = []
+    if args['--all']:
+        to_run = result.values()
+    else:
+        if args['--basic']:
+            to_run.append(result['BasicInfoPlugin'])
+        if args['--hash']:
+            to_run.append(result['HashPlugin'])
+        if args['--xor']:
+            to_run.append(result['XORPlugin'])
+        if args['--unicode']:
+            to_run.append(result['UnicodePlugin'])
+    if not to_run:
+        to_run = [x for x in result.values() if x.default]
+
+    return to_run
 
 
 class BasePlugin():

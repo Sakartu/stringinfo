@@ -1,6 +1,7 @@
-import string
 import textwrap
+
 from plugins import BasePlugin
+
 
 __author__ = 'peter'
 

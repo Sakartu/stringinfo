@@ -1,7 +1,10 @@
 import string
 import textwrap
+
 from veryprettytable import VeryPrettyTable
+
 from plugins import BasePlugin
+
 
 __author__ = 'peter'
 

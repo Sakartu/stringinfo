@@ -1,8 +1,10 @@
-import string
 import textwrap
-from colorama import Fore, Style
+
+from colorama import Fore
 from veryprettytable import VeryPrettyTable
+
 from plugins import BasePlugin
+
 
 __author__ = 'peter'
 
@@ -37,7 +39,8 @@ CHECKSUMS = [
 NON_CRYPTO_HASHES = [
     ('Pearson hashing', 8, lambda x: len(x) == 2),
     ('Buzhash', 'variable', lambda x: True),  # variable length
-    ('Fowler–Noll–Vo hash function (FNV Hash)', '32, 64, 128, 256, 512 or 1024', lambda x: len(x) in (8, 16, 32, 64, 128, 256)),
+    ('Fowler–Noll–Vo hash function (FNV Hash)', '32, 64, 128, 256, 512 or 1024',
+     lambda x: len(x) in (8, 16, 32, 64, 128, 256)),
     ('Zobrist hashing', 'variable', lambda x: True),
     ('Jenkins hash function', '32 or 64', lambda x: len(x) in (8, 16)),
     ('Java hashCode()', 32, lambda x: len(x) == 8),

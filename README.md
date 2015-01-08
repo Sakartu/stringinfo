@@ -14,3 +14,6 @@ If the input contains all-hex strings, this plugin XOR's all input strings with 
 
 ## DecodeHexPlugin
 If the input contains all-hex strings, this plugin will try to decode the bytes using commonly used encodings.
+
+## AlphabetPlugin
+This plugin tries to map the input string(s) to the alphabet, bytewise. If the input string is a hex string, it will be converted to decimals first, also bytewise.

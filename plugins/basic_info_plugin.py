@@ -22,9 +22,9 @@ class BasicInfoPlugin(BasePlugin):
             if len(self.args['STRING']) > 1:
                 result += '{0}:\n'.format(s)
             table = VeryPrettyTable()
-            table.field_names = ['Length', '# Digits', '# Alpha', '# unprintable']
+            table.field_names = ['Length', '# Digits', '# Alpha', '# Punct.', '# Control']
             table.add_row((len(s), sum(x.isdigit() for x in s), sum(x.isalpha() for x in s),
-                           sum(x in string.printable for x in s)))
+                           sum(x in string.punctuation for x in s), sum(x not in string.printable for x in s)))
             result += str(table) + '\n'
 
         return result

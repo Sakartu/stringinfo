@@ -11,3 +11,6 @@ This plugin compares the length of the given string(s) to a table of known CRC, 
 
 ## XORPlugin
 If the input contains all-hex strings, this plugin XOR's all input strings with eachother and prints the result as a hex string.
+
+## DecodeHexPlugin
+If the input contains all-hex strings, this plugin will try to decode the bytes using commonly used encodings.

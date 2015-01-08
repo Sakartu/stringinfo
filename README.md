@@ -13,7 +13,7 @@ This plugin compares the length of the given string(s) to a table of known CRC, 
 If the input contains all-hex strings, this plugin XOR's all input strings with eachother and prints the result as a hex string.
 
 ## DecodeHexPlugin
-If the input contains all-hex strings, this plugin will try to decode the bytes using commonly used encodings.
+If the input contains all-hex strings, this plugin will try to decode the bytes using commonly used encodings. Control characters will be filtered from the result, to keep your terminal from breaking. If the resulting string without control characters is empty, or if the decoding failed, the result will be marked as <invalid>
 
 ## AlphabetPlugin
 This plugin tries to map the input string(s) to the alphabet, bytewise. If the input string is a hex string, it will be converted to decimals first, also bytewise.

@@ -41,8 +41,9 @@ class DecodeHexPlugin(BasePlugin):
             result += self._decode('windows-1252 (Latin)', 'cp1252', binary)
             result += self._decode('EUC-KR (Korean)', 'euc-kr', binary)
             result += self._decode('GBK (Chinese)', 'gbk', binary)
+            result += '\n'
 
-        return result
+        return result[:-1]
 
     def _decode(self, name, encoding, binary):
         try:

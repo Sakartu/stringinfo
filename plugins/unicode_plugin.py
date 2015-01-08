@@ -7,8 +7,8 @@ from plugins import BasePlugin
 __author__ = 'peter'
 
 
-class UnicodePlugin(BasePlugin):
-    short_description = 'Unicode decodings:'
+class DecodeHexPlugin(BasePlugin):
+    short_description = 'Decode hex string to encodings:'
     default = True
     description = textwrap.dedent('''
     This plugin tries to decode the given hexstring with some common encodings, then print it

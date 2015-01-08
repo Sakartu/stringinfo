@@ -26,8 +26,8 @@ def get_plugins(args):
             to_run.append(result['HashPlugin'])
         if args['--xor']:
             to_run.append(result['XORPlugin'])
-        if args['--unicode']:
-            to_run.append(result['UnicodePlugin'])
+        if args['--decode-hex']:
+            to_run.append(result['DecodeHexPlugin'])
     if not to_run:
         to_run = [x for x in result.values() if x.default]
 

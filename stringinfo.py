@@ -2,7 +2,7 @@
 # -*- coding: utf8 -*-
 """
 Usage:
-stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--unicode] [--verbose] [--] [STRING...]
+stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--decode-hex] [--verbose] [--] [STRING...]
 
 Options:
 STRING          One or more strings for which you want information
@@ -11,7 +11,7 @@ STRING          One or more strings for which you want information
 --basic         Run only the basic info plugin
 --hash          Run only the hash plugin
 --xor           Run only the XOR plugin
---unicode       Run only the unicode plugin
+--decode-hex    Run only the decode-hex plugin
 --verbose       Print debugging messages
 """
 import colorama

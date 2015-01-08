@@ -8,6 +8,7 @@ __author__ = 'peter'
 class BasicInfoPlugin(BasePlugin):
     name = 'BasicInfoPlugin'
     short_description = 'Basic info:'
+    default = True
     description = textwrap.dedent('''
     This plugin provides some basic info about the string such as:
     - Length

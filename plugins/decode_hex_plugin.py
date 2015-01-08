@@ -49,6 +49,8 @@ class DecodeHexPlugin(BasePlugin):
             s = '"{0}"'.format(self._clean(binary.decode(encoding)))
         except UnicodeDecodeError:
             s = '<invalid>'
+        if s == '""':
+            s = '<invalid>'
         return '{0}: {1}\n'.format(name, s)
 
     @staticmethod

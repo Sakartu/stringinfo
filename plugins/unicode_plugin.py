@@ -12,8 +12,9 @@ class DecodeHexPlugin(BasePlugin):
     short_description = 'Decode hex string to encodings:'
     default = True
     description = textwrap.dedent('''
-    This plugin tries to decode the given hexstring with some common encodings, then print it.
+    This plugin tries to decode the given hexstring with the most used encodings, then print it.
     It tries to remove control characters from the string after decoding to prevent terminal breakage.
+    The encodings are sorted according to their usage, see http://w3techs.com/technologies/overview/character_encoding/all
     '''.strip())
 
     def sentinel(self):
@@ -28,6 +29,12 @@ class DecodeHexPlugin(BasePlugin):
 
             result += self._decode('UTF8', 'utf8', binary)
             result += self._decode('iso-8859-1 (Cyrillic)', 'iso-8859-1', binary)
+            result += self._decode('windows-1251 (Cyrillic)', 'cp1251', binary)
+            result += self._decode('gb2312 (Chinese)', 'gb2312', binary)
+            result += self._decode('Shift-JIS (Chinese)', 'shift-jis', binary)
+            result += self._decode('windows-1252 (Latin)', 'cp1252', binary)
+            result += self._decode('EUC-KR (Korean)', 'euc-kr', binary)
+            result += self._decode('GBK (Chinese)', 'gbk', binary)
 
         return result
 

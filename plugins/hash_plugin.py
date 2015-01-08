@@ -86,7 +86,6 @@ CRYPTO_HASHES = [
 
 
 class HashPlugin(BasePlugin):
-    name = 'HashPlugin'
     short_description = 'Hashes:'
     default = True
     description = textwrap.dedent('''

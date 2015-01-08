@@ -31,8 +31,9 @@ def main():
         table.field_names = ('Name', 'Default', 'Description')
         table.align = 'l'
         for p in ps:
-            table.add_row((p.name, Fore.GREEN + '✔' + Fore.RESET if p.default else Fore.RED + '✗' + Fore.RESET,
-                          p.description))
+            table.add_row((p.__name__,
+                           Fore.GREEN + '✔' + Fore.RESET if p.default else Fore.RED + '✗' + Fore.RESET,
+                           p.description))
         print(table)
         return
     # Initialize colorama

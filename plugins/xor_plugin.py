@@ -6,7 +6,6 @@ __author__ = 'peter'
 
 
 class XORPlugin(BasePlugin):
-    name = 'XORPlugin'
     short_description = 'XOR of the hex inputs'
     default = False
     description = textwrap.dedent('''

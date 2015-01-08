@@ -11,7 +11,7 @@ __author__ = 'peter'
 
 
 class AlphabetPlugin(BasePlugin):
-    short_description = 'Using the string as index in the alphabet'
+    short_description = 'As index in the alphabet:'
     default = True
     description = textwrap.dedent('''\
     This plugin only works when (at least one of the) string(s) is either a concatenation of decimals, or a hex string.
@@ -22,7 +22,7 @@ class AlphabetPlugin(BasePlugin):
         for s in self.args['STRING']:
             if all(x.isdigit() for x in s):
                 # All digits
-                if all(0 <= int(x) <= 26 for s in self.args['STRING'] for x in self._chunks(s, 2)):
+                if all(0 <= int(x) <= 26 for x in self._chunks(s, 2)):
                     # All between 0 and 26
                     return True
 

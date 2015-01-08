@@ -1,6 +1,7 @@
 import string
 import textwrap
 import binascii
+import unicodedata
 from veryprettytable import VeryPrettyTable
 from plugins import BasePlugin
 
@@ -11,7 +12,8 @@ class DecodeHexPlugin(BasePlugin):
     short_description = 'Decode hex string to encodings:'
     default = True
     description = textwrap.dedent('''
-    This plugin tries to decode the given hexstring with some common encodings, then print it
+    This plugin tries to decode the given hexstring with some common encodings, then print it.
+    It tries to remove control characters from the string after decoding to prevent terminal breakage.
     '''.strip())
 
     def sentinel(self):
@@ -29,10 +31,13 @@ class DecodeHexPlugin(BasePlugin):
 
         return result
 
-    @staticmethod
-    def _decode(name, encoding, binary):
+    def _decode(self, name, encoding, binary):
         try:
-            s = binary.decode(encoding)
+            s = self._clean(binary.decode(encoding))
         except UnicodeDecodeError:
             s = '<invalid>'
         return '{0}: "{1}"\n'.format(name, s)
+
+    @staticmethod
+    def _clean(s):
+        return "".join(ch for ch in s if unicodedata.category(ch)[0] != "C")

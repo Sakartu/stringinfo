@@ -2,18 +2,19 @@
 # -*- coding: utf8 -*-
 """
 Usage:
-stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--bytewise-xor] [--decode-hex] [--alphabet] [--verbose] [--] [STRING...]
+stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--bytewise-xor] [--decode-hex] [--alphabet] [--rot] [--verbose] [--] [STRING...]
 
 Options:
 STRING          One or more strings for which you want information
 --all           Run all plugins, even the ones that aren't default
 --list          List all plugins, with their descriptions and whether they're default or not
---basic         Run only the basic info plugin
---hash          Run only the hash plugin
---xor           Run only the XOR plugin
---bytewise-xor  Run only the bytewise XOR plugin
---decode-hex    Run only the decode-hex plugin
---alphabet      Run only the alphabet plugin
+--basic         Run the basic info plugin
+--hash          Run the hash plugin
+--xor           Run the XOR plugin
+--bytewise-xor  Run the bytewise XOR plugin
+--decode-hex    Run the decode-hex plugin
+--alphabet      Run the alphabet plugin
+--rot           Run the ROT(n) plugin
 --verbose       Print debugging messages
 """
 import colorama

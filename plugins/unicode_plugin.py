@@ -18,7 +18,12 @@ class DecodeHexPlugin(BasePlugin):
     '''.strip())
 
     def sentinel(self):
-        return all(not len(x) % 2 for x in self.args['STRING'])
+        try:
+            for s in self.args['STRING']:
+                binascii.unhexlify(s)
+        except ValueError:
+            return False
+        return True
 
     def handle(self):
         result = ''

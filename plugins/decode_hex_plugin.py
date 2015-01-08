@@ -46,10 +46,10 @@ class DecodeHexPlugin(BasePlugin):
 
     def _decode(self, name, encoding, binary):
         try:
-            s = self._clean(binary.decode(encoding))
+            s = '"{0}"'.format(self._clean(binary.decode(encoding)))
         except UnicodeDecodeError:
             s = '<invalid>'
-        return '{0}: "{1}"\n'.format(name, s)
+        return '{0}: {1}\n'.format(name, s)
 
     @staticmethod
     def _clean(s):

@@ -2,7 +2,7 @@
 # -*- coding: utf8 -*-
 """
 Usage:
-stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--bytewise-xor] [--decode-hex] [--verbose] [--] [STRING...]
+stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--bytewise-xor] [--decode-hex] [--alphabet] [--verbose] [--] [STRING...]
 
 Options:
 STRING          One or more strings for which you want information
@@ -13,6 +13,7 @@ STRING          One or more strings for which you want information
 --xor           Run only the XOR plugin
 --bytewise-xor  Run only the bytewise XOR plugin
 --decode-hex    Run only the decode-hex plugin
+--alphabet      Run only the alphabet plugin
 --verbose       Print debugging messages
 """
 import colorama

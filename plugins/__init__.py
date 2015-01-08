@@ -28,6 +28,8 @@ def get_plugins(args):
             to_run.append(result['XORPlugin'])
         if args['--bytewise-xor']:
             to_run.append(result['BytewiseXORPlugin'])
+        if args['--alphabet']:
+            to_run.append(result['AlphabetPlugin'])
         if args['--decode-hex']:
             to_run.append(result['DecodeHexPlugin'])
     if not to_run:

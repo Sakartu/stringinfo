@@ -2,17 +2,19 @@
 # -*- coding: utf8 -*-
 """
 Usage:
-stringinfo parse [--all] STRING...
-stringinfo list
+stringinfo [--list] [--all] [--] [STRING...]
 
 
 Options:
 STRING          One or more strings for which you want information
 --all           Run all plugins, even the ones that aren't default
+--list          List all plugins, with their descriptions and whether they're default or not
 """
 import colorama
 
 from docopt import docopt
+from colorama import Fore
+from veryprettytable import VeryPrettyTable
 import plugins
 
 __author__ = 'peter'
@@ -21,14 +23,17 @@ __author__ = 'peter'
 def main():
     args = docopt(__doc__)
 
-
     # Find plugins
     ps = plugins.get_plugins()
 
-    if args['list']:
+    if args['--list']:
+        table = VeryPrettyTable()
+        table.field_names = ('Name', 'Default', 'Description')
+        table.align = 'l'
         for p in ps:
-            print(p.name)
-            print(p.description)
+            table.add_row((p.name, Fore.GREEN + '✔' + Fore.RESET if p.default else Fore.RED + '✗' + Fore.RESET,
+                          p.description))
+        print(table)
         return
     # Initialize colorama
     colorama.init()

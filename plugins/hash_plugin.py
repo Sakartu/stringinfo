@@ -89,7 +89,7 @@ class HashPlugin(BasePlugin):
     name = 'HashPlugin'
     short_description = 'Hashes:'
     default = True
-    description = textwrap.dedent('''
+    description = textwrap.dedent('''\
     This plugin tries to see if the provided string could possibly be a hash in hex notation of some kind
     ''')
 

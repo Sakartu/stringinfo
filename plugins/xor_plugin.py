@@ -9,7 +9,7 @@ class XORPlugin(BasePlugin):
     name = 'XORPlugin'
     short_description = 'XOR of the hex inputs'
     default = False
-    description = textwrap.dedent('''
+    description = textwrap.dedent('''\
     This plugin XOR's all hexstrings from the input with eachother, in order.
     ''')
 

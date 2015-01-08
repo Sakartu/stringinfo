@@ -16,7 +16,6 @@ class BasicInfoPlugin(BasePlugin):
 
     def handle(self):
         result = ''
-        # Calculate lengths
         for s in self.args['STRING']:
             result += '{0}:\n'.format(s)
             result += 'len: {0}\n'.format(len(s))
@@ -24,5 +23,4 @@ class BasicInfoPlugin(BasePlugin):
             result += 'number of alpha: {0}\n'.format(sum(x.isalpha() for x in s))
             result += 'number of unprintable: {0}\n'.format(sum(x in string.printable for x in s))
 
-        # Calculate presence of alpha/digits/raw bytes
         return result

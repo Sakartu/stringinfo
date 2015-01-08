@@ -22,7 +22,7 @@ def main():
     ps = plugins.get_plugins()
 
     # Initialize colorama
-    colorama.init(autoreset=True)
+    colorama.init()
 
     # For each plugin, check if it's applicable and if so, run it
     for p in ps:

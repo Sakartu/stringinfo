@@ -121,8 +121,8 @@ class HashPlugin(BasePlugin):
         result = []
         for name, (length, f) in table.items():
             if f(s):
-                result.append((name, length, Fore.GREEN + '✔'))
+                result.append((name, length, Fore.GREEN + '✔' + Fore.RESET))
             else:
-                result.append((name, length, Fore.RED + '✗'))
+                result.append((name, length, Fore.RED + '✗' + Fore.RESET))
         return result
 

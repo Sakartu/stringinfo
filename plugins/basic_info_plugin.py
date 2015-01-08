@@ -10,11 +10,11 @@ class BasicInfoPlugin(BasePlugin):
     name = 'BasicInfoPlugin'
     short_description = 'Basic info:'
     default = True
-    description = textwrap.dedent('''\
+    description = textwrap.dedent('''
     This plugin provides some basic info about the string such as:
     - Length
     - Presence of alpha/digits/raw bytes
-    ''')
+    '''.strip())
 
     def handle(self):
         result = ''

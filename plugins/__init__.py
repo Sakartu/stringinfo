@@ -17,7 +17,7 @@ def get_plugins(args):
                 result[p.__name__] = p
 
     to_run = []
-    if args['--all']:
+    if args['--all'] or args['--list']:
         to_run = result.values()
     else:
         if args['--basic']:

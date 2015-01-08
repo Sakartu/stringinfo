@@ -91,9 +91,8 @@ CRYPTO_HASHES = [
 class HashPlugin(BasePlugin):
     short_description = 'Hashes:'
     default = True
-    description = textwrap.dedent('''
-    This plugin tries to see if the provided string could possibly be a hash in hex notation of some kind
-    '''.strip())
+    description = textwrap.dedent('''\
+    This plugin tries to see if the provided string could possibly be a hash in hex notation of some kind''')
 
     def handle(self):
         result = ''

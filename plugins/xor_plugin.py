@@ -9,9 +9,8 @@ __author__ = 'peter'
 class XORPlugin(BasePlugin):
     short_description = 'XOR of the hex inputs'
     default = False
-    description = textwrap.dedent('''
-    This plugin XOR's all hexstrings from the input with eachother, in order.
-    '''.strip())
+    description = textwrap.dedent('''\
+    This plugin XOR's all hexstrings from the input with eachother, in order.''')
 
     def sentinel(self):
         # Only parse if all inputs are valid hex strings

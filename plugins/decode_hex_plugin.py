@@ -11,12 +11,11 @@ __author__ = 'peter'
 class DecodeHexPlugin(BasePlugin):
     short_description = 'Decode hex string to encodings:'
     default = True
-    description = textwrap.dedent('''
+    description = textwrap.dedent('''\
     This plugin tries to decode the given hexstring with the most used encodings, then print it.
     It tries to remove control characters from the string after decoding to prevent terminal breakage.
     The encodings are sorted according to their usage, see
-    http://w3techs.com/technologies/overview/character_encoding/all
-    '''.strip())
+    http://w3techs.com/technologies/overview/character_encoding/all''')
 
     def sentinel(self):
         try:

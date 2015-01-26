@@ -42,10 +42,12 @@ def main():
         return
 
     if args['--file']:
-        args['STRING'] = [x.strip('\n\r') for x in open(args['--file'], 'r') if x.strip('\n\r')]
+        args['STRING'] = [x.strip('\n\r') for x in open(args['--file'], 'r')]
 
     if not args['STRING']:
         args['STRING'] = [sys.stdin.read()]
+
+    args['STRING'] = filter(None, args['STRING'])
 
     # Initialize colorama
     colorama.init()

@@ -10,8 +10,7 @@ class XORPlugin(BasePlugin):
     short_description = 'XOR of the hex inputs'
     default = False
     description = textwrap.dedent('''\
-    This plugin XOR's all hexstrings from the input with eachother, in order. It sees each string as a single
-    hexadecimal digit, so 0140b6 (hex) will be seen as 82102 (dec), not as 01, 64 and 182 (dec)''')
+    This plugin XOR's all hexstrings from the input with eachother, in order.''')
 
     def sentinel(self):
         # Only parse if all inputs are valid hex strings
@@ -27,4 +26,4 @@ class XORPlugin(BasePlugin):
         r = int(self.args['STRING'][0], 16)
         for s in self.args['STRING'][1:]:
             r ^= int(s, 16)
-        return hex(r)
+        return hex(r)[2:]

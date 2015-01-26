@@ -1,3 +1,5 @@
+from functools import reduce
+import operator
 import textwrap
 
 from plugins import BasePlugin
@@ -25,12 +27,12 @@ class XORPlugin(BasePlugin):
         return len(self.args['STRING']) > 1
 
     def handle(self):
-        max_len = max(map(len, self.args['STRING']))
-        result = '\n'.join('0x' + hex(int(x, 16))[2:].rjust(max_len - 2, '0') for x in self.args['STRING'])
-        result += '\n' + '=' * max_len + ' ^'
+        ints = [int(x, 16) for x in self.args['STRING']]
+        max_len = max(map(len, map(hex, ints))) - 2  # Remove 0x
 
-        r = int(self.args['STRING'][0], 16)
-        for s in self.args['STRING'][1:]:
-            r ^= int(s, 16)
-        result += '\n' + hex(r)
+        result = '\n'.join('0x{:0{ml}x}'.format(x, ml=max_len) for x in ints)
+
+        result += '\n' + '=' * (max_len + 2) + ' ^'
+
+        result += '\n0x{:0{ml}x}'.format(reduce(operator.xor, ints), ml=max_len)
         return result

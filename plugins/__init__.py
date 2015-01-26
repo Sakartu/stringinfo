@@ -1,4 +1,3 @@
-from collections import OrderedDict
 import os
 import veryprettytable
 
@@ -6,7 +5,7 @@ __author__ = 'peter'
 
 
 def all_plugins():
-    result = OrderedDict()
+    result = []
     for name in os.listdir(os.path.dirname(__file__)):
         if not name.endswith('_plugin.py'):
             continue
@@ -15,13 +14,13 @@ def all_plugins():
         for c in dir(i):
             if c.endswith('Plugin') and c != 'BasePlugin':
                 p = getattr(i, c)
-                result[p.__name__] = p
+                result.append(p)
     return result
 
 
 def usage_table():
     t = veryprettytable.VeryPrettyTable()
-    for p in all_plugins().values():
+    for p in all_plugins():
         t.add_row((p.key, p.short_description))
     t.border = False
     t.header = False
@@ -31,24 +30,11 @@ def usage_table():
 
 def get_plugins(args):
     result = all_plugins()
-    to_run = []
+
     if args['--all'] or args['--list']:
-        to_run = result.values()
-    else:
-        if args['--basic']:
-            to_run.append(result['BasicInfoPlugin'])
-        if args['--hash']:
-            to_run.append(result['HashPlugin'])
-        if args['--xor']:
-            to_run.append(result['XORPlugin'])
-        if args['--alphabet']:
-            to_run.append(result['AlphabetPlugin'])
-        if args['--rot']:
-            to_run.append(result['RotPlugin'])
-        if args['--decode-hex']:
-            to_run.append(result['DecodeHexPlugin'])
-    if not to_run:
-        to_run = [x for x in result.values() if x.default]
+        return result
+
+    to_run = [p for p in result if args[p.key]] or [x for x in result if x.default]
 
     return to_run
 

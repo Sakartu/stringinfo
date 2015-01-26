@@ -9,13 +9,13 @@ STRING          The strings for which you want information. If none are given, r
 --list          List all plugins, with their descriptions and whether they're default or not
 --all           Run all plugins, even the ones that aren't default
 --verbose       Print debugging messages
+--file INFILE   Read inputs from inputfile, removing trailing newlines
 
 Plugins:
 """
 import colorama
 
 from docopt import docopt
-from colorama import Fore
 import sys
 import veryprettytable
 import plugins
@@ -40,6 +40,9 @@ def main():
                            p.description))
         print(table)
         return
+
+    if args['--file']:
+        args['STRING'] = [x.strip('\n\r') for x in open(args['--file'], 'r')]
 
     if not args['STRING']:
         args['STRING'] = [sys.stdin.read()]

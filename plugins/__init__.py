@@ -1,5 +1,6 @@
 from collections import OrderedDict
 import os
+import veryprettytable
 
 __author__ = 'peter'
 
@@ -16,6 +17,16 @@ def all_plugins():
                 p = getattr(i, c)
                 result[p.__name__] = p
     return result
+
+
+def usage_table():
+    t = veryprettytable.VeryPrettyTable()
+    for p in all_plugins().values():
+        t.add_row((p.key, p.short_description))
+    t.border = False
+    t.header = False
+    t.align = 'l'
+    return t.get_string()
 
 
 def get_plugins(args):

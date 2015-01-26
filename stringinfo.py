@@ -32,14 +32,8 @@ __author__ = 'peter'
 
 
 def main():
-    t = veryprettytable.VeryPrettyTable()
-    for p in plugins.all_plugins().values():
-        t.add_row((p.key, p.short_description))
     d = __doc__
-    t.border = False
-    t.header = False
-    t.align = 'l'
-    d += t.get_string()
+    d += plugins.usage_table()
     args = docopt(d)
 
     # Find plugins

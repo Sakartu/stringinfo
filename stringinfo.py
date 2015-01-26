@@ -12,14 +12,6 @@ STRING          The strings for which you want information. If none are given, r
 
 Plugins:
 """
-# --basic         Run the basic info plugin
-# --hash          Run the hash plugin
-# --xor           Run the XOR plugin
-# --bytewise-xor  Run the bytewise XOR plugin
-# --decode-hex    Run the decode-hex plugin
-# --alphabet      Run the alphabet plugin
-# --rot           Run the ROT(n) plugin
-# """
 import colorama
 
 from docopt import docopt

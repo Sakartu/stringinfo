@@ -13,12 +13,12 @@ __author__ = 'peter'
 class AlphabetIndexPlugin(BasePlugin):
     short_description = 'Use the (hex or digit) input(s) as index in the alphabet'
     header = 'As index in the alphabet:'
-    default = True
+    default = False
     description = textwrap.dedent('''\
     This plugin only works when (at least one of the) string(s) is either a concatenation of decimals, or a hex string.
     This plugin will try to use character pairs from the string as indexes in the alphabet, such that 01 is 'a',
     02 is 'b', etc. If the string is a hexstring the pairs will first be converted to integers.''')
-    key = '--alphabet'
+    key = '--alphabet-index'
 
     def sentinel(self):
         for s in self.args['STRING']:

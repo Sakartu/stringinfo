@@ -47,7 +47,7 @@ def main():
     if not args['STRING']:
         args['STRING'] = [sys.stdin.read()]
 
-    args['STRING'] = filter(None, args['STRING'])
+    filter(None, args['STRING'])
 
     # Initialize colorama
     colorama.init()

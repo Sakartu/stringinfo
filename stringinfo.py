@@ -32,9 +32,7 @@ __author__ = 'peter'
 
 
 def main():
-    d = __doc__
-    d += plugins.usage_table()
-    args = docopt(d)
+    args = docopt(__doc__ + plugins.usage_table())
 
     # Find plugins
     ps = plugins.get_plugins(args)

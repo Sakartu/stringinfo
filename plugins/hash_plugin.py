@@ -38,10 +38,10 @@ CHECKSUMS = [
 
 NON_CRYPTO_HASHES = [
     ('Pearson hashing', 8, lambda x: len(x) == 2),
-    ('Buzhash', 'variable', lambda x: True),  # variable length
+    ('Buzhash', 'variable', lambda x: None),  # variable length
     ('Fowler–Noll–Vo hash function (FNV Hash)', '32, 64, 128, 256, 512 or 1024',
      lambda x: len(x) in (8, 16, 32, 64, 128, 256)),
-    ('Zobrist hashing', 'variable', lambda x: True),
+    ('Zobrist hashing', 'variable', lambda x: None),
     ('Jenkins hash function', '32 or 64', lambda x: len(x) in (8, 16)),
     ('Java hashCode()', 32, lambda x: len(x) == 8),
     ('Bernstein hash', 32, lambda x: len(x) == 8),
@@ -49,7 +49,7 @@ NON_CRYPTO_HASHES = [
     ('MurmurHash', '32, 64 or 128', lambda x: len(x) in (8, 16, 32)),
     ('SpookyHash', '32, 64 or 128', lambda x: len(x) in (8, 16, 32)),
     ('CityHash', '64, 128 or 256', lambda x: len(x) in (16, 32, 64)),
-    ('numeric hash (nhash)', 'variable', lambda x: True),
+    ('numeric hash (nhash)', 'variable', lambda x: None),
     ('xxHash', '32 or 64', lambda x: len(x) in (8, 16)),
 ]
 
@@ -77,8 +77,8 @@ CRYPTO_HASHES = [
     ('SHA-256', 256, lambda x: len(x) == 64),
     ('SHA-384', 384, lambda x: len(x) == 96),
     ('SHA-512', 512, lambda x: len(x) == 128),
-    ('SHA-3 (originally known as Keccak)', 'arbitrary', lambda x: True),
-    ('Skein', 'arbitrary', lambda x: True),
+    ('SHA-3 (originally known as Keccak)', 'arbitrary', lambda x: None),
+    ('Skein', 'arbitrary', lambda x: None),
     ('SipHash', 64, lambda x: len(x) == 16),
     ('Snefru', '128 or 256', lambda x: len(x) in (32, 64)),
     ('Spectral Hash', 512, lambda x: len(x) == 128),
@@ -122,7 +122,10 @@ class HashPlugin(BasePlugin):
     def _check_table(s, table):
         result = []
         for name, length, f in table:
-            if f(s):
+            r = f(s)
+            if r is None:
+                result.append((name, length, Fore.YELLOW + '?' + Fore.RESET))
+            elif r:
                 result.append((name, length, Fore.GREEN + '✔' + Fore.RESET))
             else:
                 result.append((name, length, Fore.RED + '✗' + Fore.RESET))

@@ -4,6 +4,7 @@ import textwrap
 from veryprettytable import VeryPrettyTable
 
 from plugins import BasePlugin
+from plugins.util import green, red
 
 
 __author__ = 'peter'
@@ -21,9 +22,10 @@ class BasicInfoPlugin(BasePlugin):
 
     def handle(self):
         table = VeryPrettyTable()
-        table.field_names = ['String', 'Length', '# Digits', '# Alpha', '# Punct.', '# Control']
+        table.field_names = ['String', 'Length', '# Digits', '# Alpha', '# Punct.', '# Control', 'Hex?']
         for s in self.args['STRING']:
             table.add_row((s, len(s), sum(x.isdigit() for x in s), sum(x.isalpha() for x in s),
-                           sum(x in string.punctuation for x in s), sum(x not in string.printable for x in s)))
+                           sum(x in string.punctuation for x in s), sum(x not in string.printable for x in s),
+                           green('✔') if all(x in string.hexdigits for x in s) else red('✗')))
 
         return str(table) + '\n'

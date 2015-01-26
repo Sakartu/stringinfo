@@ -18,14 +18,10 @@ class BasicInfoPlugin(BasePlugin):
     - Presence of alpha/digits/raw bytes''')
 
     def handle(self):
-        result = ''
+        table = VeryPrettyTable()
+        table.field_names = ['String', 'Length', '# Digits', '# Alpha', '# Punct.', '# Control']
         for s in self.args['STRING']:
-            if len(self.args['STRING']) > 1:
-                result += '{0}:\n'.format(s)
-            table = VeryPrettyTable()
-            table.field_names = ['Length', '# Digits', '# Alpha', '# Punct.', '# Control']
-            table.add_row((len(s), sum(x.isdigit() for x in s), sum(x.isalpha() for x in s),
+            table.add_row((s, len(s), sum(x.isdigit() for x in s), sum(x.isalpha() for x in s),
                            sum(x in string.punctuation for x in s), sum(x not in string.printable for x in s)))
-            result += str(table) + '\n'
 
-        return result
+        return str(table) + '\n'

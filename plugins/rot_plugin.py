@@ -21,7 +21,7 @@ class RotPlugin(BasePlugin):
         result = ''
         for s in self.args['STRING']:
             if len(self.args['STRING']) > 1:
-                result += '{0}:\n'.format(s)
+                result += '{0}:\n'.format(repr(s))
             for i in range(26):
                 result += 'ROT{0:02d}: {1}\n'.format(i, self._rot(s, i))
         return result

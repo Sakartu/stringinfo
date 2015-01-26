@@ -24,6 +24,6 @@ class AlphabetPlugin(BasePlugin):
         table.field_names = ['String', 'Alphabet']
         for s in self.args['STRING']:
             result = ''.join(color(x in s, x, x) for x in alphabet)
-            table.add_row((s, result))
+            table.add_row((repr(s), result))
 
         return str(table) + '\n'

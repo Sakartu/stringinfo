@@ -31,7 +31,7 @@ class DecodeHexPlugin(BasePlugin):
         result = ''
         for s in self.args['STRING']:
             if len(self.args['STRING']) > 1:
-                result += '{0}:\n'.format(s)
+                result += '{0}:\n'.format(repr(s))
             binary = binascii.unhexlify(s)
 
             result += self._decode('UTF8', 'utf8', binary)

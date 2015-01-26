@@ -2,10 +2,10 @@
 # -*- coding: utf8 -*-
 """
 Usage:
-stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--bytewise-xor] [--decode-hex] [--alphabet] [--rot] [--verbose] [--] STRING...
+stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--bytewise-xor] [--decode-hex] [--alphabet] [--rot] [--verbose] [--] [STRING]...
 
 Options:
-STRING          One or more strings for which you want information
+STRING          The strings for which you want information. If none are given, read from stdin upto EOF.
 --all           Run all plugins, even the ones that aren't default
 --list          List all plugins, with their descriptions and whether they're default or not
 --basic         Run the basic info plugin
@@ -21,6 +21,7 @@ import colorama
 
 from docopt import docopt
 from colorama import Fore
+import sys
 from veryprettytable import VeryPrettyTable
 import plugins
 
@@ -43,6 +44,10 @@ def main():
                            p.description))
         print(table)
         return
+
+    if not args['STRING']:
+        args['STRING'] = [sys.stdin.read()]
+
     # Initialize colorama
     colorama.init()
 

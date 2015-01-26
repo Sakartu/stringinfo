@@ -42,7 +42,7 @@ def main():
         return
 
     if args['--file']:
-        args['STRING'] = [x.strip('\n\r') for x in open(args['--file'], 'r')]
+        args['STRING'] = [x.strip('\n\r') for x in open(args['--file'], 'r') if x.strip('\n\r')]
 
     if not args['STRING']:
         args['STRING'] = [sys.stdin.read()]

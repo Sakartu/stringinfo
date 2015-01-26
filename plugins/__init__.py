@@ -4,7 +4,7 @@ import os
 __author__ = 'peter'
 
 
-def get_plugins(args):
+def all_plugins():
     result = OrderedDict()
     for name in os.listdir(os.path.dirname(__file__)):
         if not name.endswith('_plugin.py'):
@@ -15,7 +15,11 @@ def get_plugins(args):
             if c.endswith('Plugin') and c != 'BasePlugin':
                 p = getattr(i, c)
                 result[p.__name__] = p
+    return result
 
+
+def get_plugins(args):
+    result = all_plugins()
     to_run = []
     if args['--all'] or args['--list']:
         to_run = result.values()

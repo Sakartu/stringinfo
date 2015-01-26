@@ -9,13 +9,15 @@ __author__ = 'peter'
 
 
 class DecodeHexPlugin(BasePlugin):
-    short_description = 'Decode hex string to encodings:'
+    short_description = 'Try to decode the hextring input(s) with the most used encodings'
+    header = 'Decode hex string to encodings:'
     default = True
     description = textwrap.dedent('''\
     This plugin tries to decode the given hexstring with the most used encodings, then print it.
     It tries to remove control characters from the string after decoding to prevent terminal breakage.
     The encodings are sorted according to their usage, see
     http://w3techs.com/technologies/overview/character_encoding/all''')
+    key = '--decode-hex'
 
     def sentinel(self):
         try:

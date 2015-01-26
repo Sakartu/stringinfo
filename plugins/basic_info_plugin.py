@@ -10,12 +10,14 @@ __author__ = 'peter'
 
 
 class BasicInfoPlugin(BasePlugin):
-    short_description = 'Basic info:'
+    short_description = 'List some basic info about the string in a table'
+    header = 'Basic info:'
     default = True
     description = textwrap.dedent('''\
     This plugin provides some basic info about the string such as:
     - Length
     - Presence of alpha/digits/raw bytes''')
+    key = '--basic'
 
     def handle(self):
         table = VeryPrettyTable()

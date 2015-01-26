@@ -89,10 +89,12 @@ CRYPTO_HASHES = [
 
 
 class HashPlugin(BasePlugin):
-    short_description = 'Hashes:'
+    short_description = 'Try to see if the input(s) could have the right format for a set of known hashes'
+    header = 'Hashes:'
     default = True
     description = textwrap.dedent('''\
     This plugin tries to see if the provided string could possibly be a hash in hex notation of some kind''')
+    key = '--hash'
 
     def handle(self):
         result = ''

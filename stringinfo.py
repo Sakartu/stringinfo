@@ -11,33 +11,42 @@ STRING          The strings for which you want information. If none are given, r
 --verbose       Print debugging messages
 
 Plugins:
---basic         Run the basic info plugin
---hash          Run the hash plugin
---xor           Run the XOR plugin
---bytewise-xor  Run the bytewise XOR plugin
---decode-hex    Run the decode-hex plugin
---alphabet      Run the alphabet plugin
---rot           Run the ROT(n) plugin
 """
+# --basic         Run the basic info plugin
+# --hash          Run the hash plugin
+# --xor           Run the XOR plugin
+# --bytewise-xor  Run the bytewise XOR plugin
+# --decode-hex    Run the decode-hex plugin
+# --alphabet      Run the alphabet plugin
+# --rot           Run the ROT(n) plugin
+# """
 import colorama
 
 from docopt import docopt
 from colorama import Fore
 import sys
-from veryprettytable import VeryPrettyTable
+import veryprettytable
 import plugins
 
 __author__ = 'peter'
 
 
 def main():
-    args = docopt(__doc__)
+    t = veryprettytable.VeryPrettyTable()
+    for p in plugins.all_plugins().values():
+        t.add_row((p.key, p.short_description))
+    d = __doc__
+    t.border = False
+    t.header = False
+    t.align = 'l'
+    d += t.get_string()
+    args = docopt(d)
 
     # Find plugins
     ps = plugins.get_plugins(args)
 
     if args['--list']:
-        table = VeryPrettyTable()
+        table = veryprettytable.VeryPrettyTable()
         table.field_names = ('Name', 'Default', 'Description')
         table.align = 'l'
         for p in ps:
@@ -57,7 +66,7 @@ def main():
     for p in ps:
         plugin = p(args)
         if plugin.sentinel():
-            print(plugin.short_description)
+            print(plugin.header)
             print(plugin.handle())
         else:
             if args['--verbose']:

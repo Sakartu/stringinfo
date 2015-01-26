@@ -10,10 +10,12 @@ __author__ = 'peter'
 
 
 class RotPlugin(BasePlugin):
-    short_description = 'Rot(n) versions of strings'
+    short_description = 'Produce all possible ROT(n) versions of the input(s)'
+    header = 'Rot(n) versions of strings'
     default = True
     description = textwrap.dedent('''\
     This plugin produces all possible Rot(n) versions of the given string.''')
+    key = '--rot'
 
     def handle(self):
         result = ''

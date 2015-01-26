@@ -9,7 +9,7 @@ STRING          The strings for which you want information. If none are given, r
 --list          List all plugins, with their descriptions and whether they're default or not
 --all           Run all plugins, even the ones that aren't default
 --verbose       Print debugging messages
---file INFILE   Read inputs from inputfile, removing trailing newlines
+--file INFILE   Read inputs from inputfile, removing trailing newlines. BEWARE: leading/trailing whitespace is preserved!
 
 Plugins:
 """

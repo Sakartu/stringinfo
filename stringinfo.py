@@ -5,7 +5,7 @@ Usage:
 stringinfo [options] [--] [STRING]...
 
 Options:
-STRING          The strings for which you want information. If none are given, read from stdin upto EOF.
+STRING          The strings for which you want information. If none are given, read from stdin upto EOF. Empty strings are ignored.
 --list          List all plugins, with their descriptions and whether they're default or not
 --all           Run all plugins, even the ones that aren't default
 --verbose       Print debugging messages

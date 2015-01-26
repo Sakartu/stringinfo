@@ -4,6 +4,7 @@ from colorama import Fore
 from veryprettytable import VeryPrettyTable
 
 from plugins import BasePlugin
+from plugins.util import yellow, green, red
 
 
 __author__ = 'peter'
@@ -126,10 +127,10 @@ class HashPlugin(BasePlugin):
         for name, length, f in table:
             r = f(s)
             if r is None:
-                result.append((name, length, Fore.YELLOW + '?' + Fore.RESET))
+                result.append((name, length, yellow('?')))
             elif r:
-                result.append((name, length, Fore.GREEN + '✔' + Fore.RESET))
+                result.append((name, length, green('✔')))
             else:
-                result.append((name, length, Fore.RED + '✗' + Fore.RESET))
+                result.append((name, length, red('✗')))
         return result
 

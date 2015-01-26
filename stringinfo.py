@@ -19,6 +19,7 @@ from colorama import Fore
 import sys
 import veryprettytable
 import plugins
+from plugins.util import green, red
 
 __author__ = 'peter'
 
@@ -35,7 +36,7 @@ def main():
         table.align = 'l'
         for p in ps:
             table.add_row((p.__name__,
-                           Fore.GREEN + '✔' + Fore.RESET if p.default else Fore.RED + '✗' + Fore.RESET,
+                           green('✔') if p.default else red('✗'),
                            p.description))
         print(table)
         return

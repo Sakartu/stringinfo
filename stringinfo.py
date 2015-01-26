@@ -19,7 +19,7 @@ from docopt import docopt
 import sys
 import veryprettytable
 import plugins
-from plugins.util import green, red
+from plugins.util import color
 
 __author__ = 'peter'
 
@@ -36,7 +36,7 @@ def main():
         table.align = 'l'
         for p in ps:
             table.add_row((p.__name__,
-                           green('✔') if p.default else red('✗'),
+                           color(p.default),
                            p.description))
         print(table)
         return

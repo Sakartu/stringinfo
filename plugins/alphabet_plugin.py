@@ -4,7 +4,7 @@ import textwrap
 from veryprettytable import VeryPrettyTable
 
 from plugins import BasePlugin
-from plugins.util import green, red
+from plugins.util import green, red, color
 
 
 __author__ = 'peter'
@@ -23,7 +23,7 @@ class AlphabetPlugin(BasePlugin):
         table = VeryPrettyTable()
         table.field_names = ['String', 'Alphabet']
         for s in self.args['STRING']:
-            result = ''.join(green(x) if x in s else red(x) for x in alphabet)
+            result = ''.join(color(x in s, x, x) for x in alphabet)
             table.add_row((s, result))
 
         return str(table) + '\n'

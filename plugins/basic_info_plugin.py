@@ -4,7 +4,7 @@ import textwrap
 from veryprettytable import VeryPrettyTable
 
 from plugins import BasePlugin
-from plugins.util import green, red
+from plugins.util import color
 
 
 __author__ = 'peter'
@@ -26,6 +26,6 @@ class BasicInfoPlugin(BasePlugin):
         for s in self.args['STRING']:
             table.add_row((s, len(s), sum(x.isdigit() for x in s), sum(x.isalpha() for x in s),
                            sum(x in string.punctuation for x in s), sum(x not in string.printable for x in s),
-                           green('✔') if all(x in string.hexdigits for x in s) else red('✗')))
+                           color(all(x in string.hexdigits for x in s)),))
 
         return str(table) + '\n'

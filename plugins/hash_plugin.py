@@ -1,10 +1,9 @@
 import textwrap
 
-from colorama import Fore
 from veryprettytable import VeryPrettyTable
 
 from plugins import BasePlugin
-from plugins.util import yellow, green, red
+from plugins.util import yellow, green, red, color
 
 
 __author__ = 'peter'
@@ -126,11 +125,6 @@ class HashPlugin(BasePlugin):
         result = []
         for name, length, f in table:
             r = f(s)
-            if r is None:
-                result.append((name, length, yellow('?')))
-            elif r:
-                result.append((name, length, green('✔')))
-            else:
-                result.append((name, length, red('✗')))
+            result.append((name, length, color(r)))
         return result
 

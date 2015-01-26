@@ -2,7 +2,7 @@
 # -*- coding: utf8 -*-
 """
 Usage:
-stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--bytewise-xor] [--decode-hex] [--alphabet] [--rot] [--verbose] [--] [STRING...]
+stringinfo [--list] [--all] [--basic] [--hash] [--xor] [--bytewise-xor] [--decode-hex] [--alphabet] [--rot] [--verbose] [--] STRING...
 
 Options:
 STRING          One or more strings for which you want information

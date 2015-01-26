@@ -17,40 +17,46 @@ class AlphabetIndexPlugin(BasePlugin):
     description = textwrap.dedent('''\
     This plugin only works when (at least one of the) string(s) is either a concatenation of decimals, or a hex string.
     This plugin will try to use character pairs from the string as indexes in the alphabet, such that 01 is 'a',
-    02 is 'b', etc. If the string is a hexstring the pairs will first be converted to integers.''')
+    02 is 'b', etc. If the string is a hexstring the pairs will first be converted to integers. The index will be used
+    modulo te length of the alphabet.''')
     key = '--alphabet-index'
 
     def sentinel(self):
         for s in self.args['STRING']:
-            if all(x.isdigit() for x in s):
-                # All digits
-                if all(0 <= int(x) <= 26 for x in self._chunks(s, 2)):
-                    # All between 0 and 26
-                    return True
+            try:
+                map(int, s)
+                return True
+            except ValueError:
+                pass
 
             try:
-                if all(0 <= int(x) <= 26 for x in binascii.unhexlify(s)):
-                    return True
+                map(int, binascii.unhexlify(s))
+                return True
             except ValueError:
                 continue
         return False
 
     def handle(self):
-        result = ''
+        t = VeryPrettyTable(field_names=('String', 'Method', 'Base', 'Output'))
         for s in self.args['STRING']:
-            if len(self.args['STRING']) > 1:
-                result += '{0}:\n'.format(s)
+            alphabet = string.ascii_lowercase
+
             try:
-                result += 'As decimals: {0}\n'.format(''.join(string.ascii_lowercase[int(x)] for x in self._chunks(s, 2)))
+                t.add_row((repr(s), 'dec', '0-based', ''.join(alphabet[int(x) % len(alphabet)] for x in self._chunks(s, 2))))
+                t.add_row((repr(s), 'dec', '1-based', ''.join(alphabet[(int(x) - 1) % len(alphabet)] for x in self._chunks(s, 2))))
             except ValueError:
                 pass
 
             try:
-                indexes = [x for x in binascii.unhexlify(s)]
-                result += 'As hex: {0}\n'.format(''.join(string.ascii_letters[x] for x in indexes))
+                indexes = [int(x) for x in binascii.unhexlify(s)]
+                t.add_row((repr(s), 'hex', '0-based', ''.join(alphabet[int(x) % len(alphabet)] for x in indexes)))
+                t.add_row((repr(s), 'hex', '1-based', ''.join(alphabet[(int(x) - 1) % len(alphabet)] for x in indexes)))
             except ValueError as e:
-                print(e)
-        return result
+                if self.args['--verbose']:
+                    print(e)
+
+        t.align = 'l'
+        return t.get_string()
 
     @staticmethod
     def _chunks(s, n):

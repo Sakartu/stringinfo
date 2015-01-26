@@ -1,4 +1,5 @@
 import os
+from colorama import Fore
 import veryprettytable
 
 __author__ = 'peter'
@@ -56,3 +57,24 @@ class BasePlugin():
         :return: A string forming the output of this plugin.
         """
         raise NotImplementedError
+
+
+def color(test, t='✔', f='✗', n='?'):
+    if test is None:
+        return yellow(n)
+    elif test:
+        return green(t)
+    else:
+        return red(f)
+
+
+def yellow(s):
+    return Fore.YELLOW + s + Fore.RESET
+
+
+def red(s):
+    return Fore.RED + s + Fore.RESET
+
+
+def green(s):
+    return Fore.GREEN + s + Fore.RESET

@@ -3,8 +3,7 @@ import textwrap
 
 from veryprettytable import VeryPrettyTable
 
-from plugins import BasePlugin
-from plugins.util import color
+from plugins import BasePlugin, color
 
 
 __author__ = 'peter'

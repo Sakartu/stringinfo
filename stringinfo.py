@@ -19,7 +19,7 @@ from docopt import docopt
 import sys
 import veryprettytable
 import plugins
-from plugins.util import color
+from plugins import color
 
 __author__ = 'peter'
 
